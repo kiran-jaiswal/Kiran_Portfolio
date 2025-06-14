@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background-primary text-white font-sans;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display font-bold leading-tight;
+  }
+
+  h1 {
+    @apply text-4xl sm:text-5xl md:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl sm:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl sm:text-3xl;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold mb-12 relative inline-block;
+  }
+
+  .section-title::after {
+    content: "";
+    @apply absolute -bottom-2 left-0 w-1/2 h-1 bg-accent-500 rounded-full;
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent-300 to-primary-400;
+    background-size: 200% 200%;
+    animation: gradientFlow 8s ease infinite;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg 
+     transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-glow
+    relative overflow-hidden;
+  }
+
+  .btn-primary::after {
+    content: "";
+    @apply absolute inset-0 bg-white/20 transform -translate-x-full;
+    animation: shimmer 2s infinite;
+    pointer-events: none; /* Add this line */
+  }
+
+  .btn-outline {
+    @apply px-6 py-3 border border-primary-500 text-primary-500 hover:bg-primary-500/10
+    font-medium rounded-lg transition-all duration-300 ease-in-out relative overflow-hidden;
+  }
+
+  .btn-outline::after {
+    content: "";
+    @apply absolute inset-0 bg-primary-500/10 transform -translate-x-full;
+    animation: shimmer 2s infinite;
+    pointer-events: none; /* Add this line */
+  }
+
+  .card {
+    @apply bg-background-secondary rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 
+     border border-background-accent/50 hover:border-primary-600/50 relative overflow-hidden;
+  }
+
+  .card::before {
+    content: "";
+    @apply absolute inset-0 bg-gradient-to-r from-primary-500/10 to-accent-500/10 opacity-0 transition-opacity duration-300;
+    pointer-events: none; /* ADD THIS LINE - This is the key fix! */
+  }
+
+  .card:hover::before {
+    @apply opacity-100;
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(55, 211, 255, 0.2),
+      0 0 10px rgba(55, 211, 255, 0.2), 0 0 15px rgba(55, 211, 255, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(55, 211, 255, 0.4),
+      0 0 20px rgba(55, 211, 255, 0.4), 0 0 30px rgba(55, 211, 255, 0.4);
+  }
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background-secondary;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary-700;
+}
